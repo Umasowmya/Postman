@@ -1,0 +1,238 @@
+{
+	"info": {
+		"_postman_id": "6d3c3b1f-b26f-4e35-bd58-cd42fe086125",
+		"name": "Section API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21913887"
+	},
+	"item": [
+		{
+			"name": "Post section",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const response = pm.response.json()",
+							"",
+							"pm.globals.set(\"sectionId\",response[\"id\"])"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 7025,\n    \"project_id\": 2203306141,\n    \"order\": 1,\n    \"name\": \"Groceries\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/sections",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sections"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get section",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/sections/:sectionId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sections",
+						":sectionId"
+					],
+					"variable": [
+						{
+							"key": "sectionId",
+							"value": "{{sectionId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All section",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/sections?project_id=2203306141",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sections"
+					],
+					"query": [
+						{
+							"key": "project_id",
+							"value": "2203306141"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update section",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"Supermarket\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/sections/:sectionId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sections",
+						":sectionId"
+					],
+					"variable": [
+						{
+							"key": "sectionId",
+							"value": "{{sectionId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete section",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/sections/:sectionId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sections",
+						":sectionId"
+					],
+					"variable": [
+						{
+							"key": "sectionId",
+							"value": "{{sectionId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://api.todoist.com/rest/v1"
+		},
+		{
+			"key": "accessToken",
+			"value": "83b75e918c4dd472ee104061b9c29d1d6fa41988",
+			"type": "string"
+		}
+	]
+}
